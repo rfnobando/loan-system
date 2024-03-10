@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('loan_id')->constrained();
             $table->string('status');
-            $table->date('expiration_at');
-            $table->date('payment_at')->nullable();
+            $table->date('expiration_date');
+            $table->date('paid_at')->nullable();
             $table->timestamps();
         });
     }

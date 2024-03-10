@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained();
             $table->decimal('amount', 20, 2);
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
