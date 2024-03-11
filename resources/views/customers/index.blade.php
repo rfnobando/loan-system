@@ -24,7 +24,7 @@
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->dni_number }}</td>
                             <td><a href="#">Ver Fotos</a></td>
-                            <td><a href="#">Ver Préstamos</a></td>
+                            <td><a href="{{ route('customers.show', $customer->id) }}">Ver Historial</a></td>
                         </tr>
                     @endforeach
                 </tbody>
