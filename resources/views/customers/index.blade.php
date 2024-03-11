@@ -28,8 +28,10 @@
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
+            <div class="px-3">
+                {{ $customers->links() }}
+            </div>
         </div>
     </div>
 </x-layouts.app>
