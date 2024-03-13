@@ -23,7 +23,18 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->dni_number }}</td>
                         <td><a href="#">Ver Fotos</a></td>
-                        <td><a href="#">Editar</a> | <a href="">Borrar</a></td>
+                        <td>
+                            <a href="{{ route('customers.edit', $customer) }}" class="btn btn-warning">
+                                <i class="fas fa-pencil"></i>
+                            </a>
+                            <button onclick="submitDeleteForm()" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <form id="deleteForm" action="{{ route('customers.destroy', $customer) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -57,4 +68,5 @@
             </table>
         </div>
     </div>
+    <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
 </x-layouts.app>

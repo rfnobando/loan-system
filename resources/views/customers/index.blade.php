@@ -12,7 +12,6 @@
                         <th scope="col">Teléfono</th>
                         <th scope="col">Email</th>
                         <th scope="col">DNI</th>
-                        <th scope="col">Fotos DNI</th>
                         <th scope="col">Préstamos</th>
                     </tr>
                 </thead>
@@ -23,8 +22,7 @@
                             <td>{{ $customer->phone_number }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->dni_number }}</td>
-                            <td><a href="#">Ver Fotos</a></td>
-                            <td><a href="{{ route('customers.show', $customer->id) }}">Ver Historial</a></td>
+                            <td><a href="{{ route('customers.show', $customer) }}">Ver Historial</a></td>
                         </tr>
                     @endforeach
                 </tbody>

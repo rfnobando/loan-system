@@ -16,7 +16,7 @@
                 <div class="collapse" id="collapseCustomers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('customers.index') }}">Ver todos</a>
-                        <a class="nav-link" href="#">Registrar cliente</a>
+                        <a class="nav-link" href="{{ route('customers.create') }}">Registrar cliente</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLoans" aria-expanded="false" aria-controls="collapseLoans">
@@ -34,7 +34,6 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            Start Bootstrap
         </div>
     </nav>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -22,7 +23,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create', ['customer' => new Customer]);
     }
 
     /**
@@ -30,7 +31,12 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $customer = $request->validated();
+        $customer['dni_frontpic'] = $request->file('dni_frontpic')->store('uploads', 'public');
+        $customer['dni_backpic'] = $request->file('dni_backpic')->store('uploads', 'public');
+
+        Customer::create($customer);
+        return to_route('customers.index');
     }
 
     /**
@@ -46,7 +52,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', ['customer' => $customer]);
     }
 
     /**
@@ -62,6 +68,11 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        Storage::delete('public/'.$customer->dni_frontpic);
+        Storage::delete('public/'.$customer->dni_backpic);
+        $customer->delete();
+
+        return to_route('customers.index');
     }
+
 }

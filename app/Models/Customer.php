@@ -10,6 +10,15 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'full_name',
+        'phone_number',
+        'email',
+        'dni_number',
+        'dni_frontpic',
+        'dni_backpic'
+    ];
+
     /**
      * Get all of the loans for the Customer
      *
