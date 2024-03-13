@@ -60,7 +60,20 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $data = $request->validated();
+
+        if($request->hasFile('dni_frontpic')) {
+            Storage::delete('public/'.$customer->dni_frontpic);
+            $data['dni_frontpic'] = $request->file('dni_frontpic')->store('uploads', 'public');
+        }
+
+        if($request->hasFile('dni_backpic')) {
+            Storage::delete('public/'.$customer->dni_backpic);
+            $data['dni_backpic'] = $request->file('dni_backpic')->store('uploads', 'public');
+        }
+
+        $customer->update($data);
+        return to_route('customers.show', $customer);
     }
 
     /**

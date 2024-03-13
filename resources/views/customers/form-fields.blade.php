@@ -32,14 +32,14 @@
     </div>
 @endif
 <div class="input-group mb-3">
-    <input type="file" class="form-control" id="dni_frontpic" name="dni_frontpic" value="{{ old('dni_frontpic') }}" required>
+    <input type="file" class="form-control" id="dni_frontpic" name="dni_frontpic" required>
     <label class="input-group-text" for="dni_frontpic">DNI Frente</label>
     @error('dni_frontpic')
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
 <div class="input-group mb-3">
-    <input type="file" class="form-control" id="dni_backpic" name="dni_backpic" value="{{ old('dni_backpic') }}" required>
+    <input type="file" class="form-control" id="dni_backpic" name="dni_backpic" required>
     <label class="input-group-text" for="dni_backpic">DNI Dorso</label>
     @error('dni_backpic')
         <small class="text-danger">{{ $message }}</small>

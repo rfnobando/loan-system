@@ -13,4 +13,5 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('js/disableRequiredImages.js') }}"></script>
 </x-layouts.app>
