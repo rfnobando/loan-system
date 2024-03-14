@@ -17,20 +17,11 @@ class InstallmentFactory extends Factory
      */
     public function definition(): array
     {
-        $status = $this->faker->randomElement(['Pendiente', 'Vencida']);
-        $expirationDate = '';
-
-        if ($status == 'Vencida') {
-            $expirationDate = $this->faker->dateTimeBetween('-10 weeks', '-1 week');
-        } else {
-            $expirationDate = $this->faker->dateTimeBetween('+1 week', '+5 weeks');
-        }
-
         return [
             'loan_id' => Loan::factory(),
             'amount' => $this->faker->numberBetween(300000, 5000000) / 100,
-            'status' => $status,
-            'expiration_date' => $expirationDate,
+            'status' => 'Pendiente',
+            'expiration_date' => $this->faker->dateTimeBetween('+1 week', '+5 weeks'),
             'paid_at' => null
         ];
     }
