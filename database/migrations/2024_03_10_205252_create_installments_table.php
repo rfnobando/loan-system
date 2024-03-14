@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('loan_id')->constrained()->onDelete('cascade');
+            $table->decimal('amount', 20, 2);
             $table->string('status');
-            $table->date('expiration_date');
-            $table->date('paid_at')->nullable();
+            $table->timestamp('expiration_date');
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });
     }

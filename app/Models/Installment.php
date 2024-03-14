@@ -10,6 +10,11 @@ class Installment extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'expiration_date' => 'datetime',
+        'paid_at' => 'datetime'
+    ];
+
     /**
      * Get the loan that owns the Installment
      *

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,4 @@ use App\Http\Controllers\CustomerController;
 
 Route::view('/', 'dashboard')->name('dashboard');
 Route::resource('customers', CustomerController::class);
+Route::resource('loans', LoanController::class);

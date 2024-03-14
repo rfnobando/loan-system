@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -96,8 +96,8 @@
                     <tr>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->status }}</td>
-                        <td>{{ $loan->created_at->format('d-m-Y') }}</td>
-                        <td><a href="">Ver Cuotas</a></td>
+                        <td>{{ $loan->created_at }}</td>
+                        <td><a href="{{ route('loans.show', $loan) }}">Ver Cuotas</a></td>
                     </tr>
                     @endforeach
                 </thead>

@@ -28,6 +28,7 @@ class InstallmentFactory extends Factory
 
         return [
             'loan_id' => Loan::factory(),
+            'amount' => $this->faker->numberBetween(300000, 5000000) / 100,
             'status' => $status,
             'expiration_date' => $expirationDate,
             'paid_at' => null
