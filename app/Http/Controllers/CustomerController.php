@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -73,7 +74,7 @@ class CustomerController extends Controller
         }
 
         $customer->update($data);
-        return to_route('customers.show', $customer);
+        return to_route('customers.show', ['customer' => $customer]);
     }
 
     /**
@@ -86,6 +87,18 @@ class CustomerController extends Controller
         $customer->delete();
 
         return to_route('customers.index');
+    }
+
+    public function searchByDNI(Request $request)
+    {
+        $dni = $request->query('dni');
+        $customer = Customer::where('dni_number', $dni)->first();
+
+        if ($customer) {
+            return to_route('customers.show', ['customer' => $customer]);
+        } else {
+            return back()->with('status', 'El usuario buscado no existe.');
+        }
     }
 
 }

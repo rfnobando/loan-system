@@ -11,6 +11,10 @@ class Loan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'amount'
+    ];
+
     /**
      * Get the customer that owns the Loan
      *

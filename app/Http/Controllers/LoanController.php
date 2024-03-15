@@ -53,7 +53,8 @@ class LoanController extends Controller
      */
     public function update(UpdateLoanRequest $request, Loan $loan)
     {
-        //
+        $loan->update($request->validated());
+        return to_route('loans.show', ['loan' => $loan]);
     }
 
     /**

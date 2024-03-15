@@ -16,6 +16,11 @@
             <x-layouts.sidenav />
             <div id="layoutSidenav_content">
                 <main>
+                    @if(session('status'))
+                        <div class="alert alert-warning" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <div class="container-fluid px-4">
                         <h1 class="my-4">{{ $title }}</h1>
                         {{ $slot }}
