@@ -1,4 +1,6 @@
-function submitDeleteForm () {
+const deleteBtn = document.getElementById('deleteBtn');
+
+deleteBtn.addEventListener('click', () => {
     const deleteForm = document.getElementById('deleteForm');
 
     if (!confirm('¿Deseas borrar el registro?')) {
@@ -6,4 +8,4 @@ function submitDeleteForm () {
     }
 
     deleteForm.submit();
-}
+});

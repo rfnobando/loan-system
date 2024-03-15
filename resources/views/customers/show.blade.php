@@ -31,7 +31,7 @@
                             <a href="{{ route('customers.edit', $customer) }}" class="btn btn-warning">
                                 <i class="fas fa-pencil"></i>
                             </a>
-                            <button onclick="submitDeleteForm()" class="btn btn-danger">
+                            <button id="deleteBtn" class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </button>
                             <form id="deleteForm" action="{{ route('customers.destroy', $customer) }}" method="POST">

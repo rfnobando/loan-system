@@ -45,7 +45,7 @@ class LoanController extends Controller
      */
     public function edit(Loan $loan)
     {
-        //
+        return view('loans.edit', ['loan' => $loan]);
     }
 
     /**
