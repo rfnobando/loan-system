@@ -57,6 +57,8 @@
                         <th scope="col">Pagos</th>
                         <th scope="col">Acciones</th>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach($loan->installments as $installment)
                     <tr>
                         <td>${{ $installment->amount }}</td>
@@ -82,8 +84,6 @@
                         </td>
                     </tr>
                     @endforeach
-                </thead>
-                <tbody>
                 </tbody>
             </table>
         </div>

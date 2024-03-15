@@ -92,16 +92,16 @@
                         <th scope="col">Fecha de Solicitud</th>
                         <th scope="col">Cuotas</th>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach($customer->loans as $loan)
                     <tr>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->status }}</td>
                         <td>{{ $loan->created_at }}</td>
-                        <td><a href="{{ route('loans.show', $loan) }}">Ver Cuotas</a></td>
+                        <td><a class="btn btn-primary" href="{{ route('loans.show', $loan) }}">Ver Cuotas</a></td>
                     </tr>
                     @endforeach
-                </thead>
-                <tbody>
                 </tbody>
             </table>
         </div>

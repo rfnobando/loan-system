@@ -22,7 +22,7 @@
                             <td>{{ $customer->phone_number }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->dni_number }}</td>
-                            <td><a href="{{ route('customers.show', $customer) }}">Ver Historial</a></td>
+                            <td><a class="btn btn-primary" href="{{ route('customers.show', $customer) }}">Ver Historial</a></td>
                         </tr>
                     @endforeach
                 </tbody>
