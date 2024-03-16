@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreLoanRequest;
 use App\Http\Requests\UpdateLoanRequest;
 
@@ -19,9 +20,9 @@ class LoanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('loans.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class LoanController extends Controller
      */
     public function store(StoreLoanRequest $request)
     {
-        //
+        $loan = Loan::create($request->validated());
+        return to_route('loans.show', ['loan' => $loan]);
     }
 
     /**
@@ -62,6 +64,9 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
-        //
+        $customer = $loan->customer;
+        $loan->delete();
+
+        return to_route('customers.show', ['customer' => $customer]);
     }
 }

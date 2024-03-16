@@ -1,4 +1,5 @@
 <x-layouts.app title="Cliente #{{ $customer->id }}">
+    <h4 class="mb-3">DNI: {{ $customer->dni_number }}</h4>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -78,6 +79,11 @@
             </div>
         </div>
     </div>
+    <form action="{{ route('loans.create') }}" method="GET">
+        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+        <input type="hidden" name="customer_dni_number" value="{{ $customer->dni_number }}">
+        <button class="btn btn-primary m-4">Asignar préstamo</button>
+    </form>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -87,7 +93,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Monto Solicitado</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Facturación</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Fecha de Solicitud</th>
                         <th scope="col">Cuotas</th>
@@ -97,6 +104,7 @@
                     @foreach($customer->loans as $loan)
                     <tr>
                         <td>${{ $loan->amount }}</td>
+                        <td>{{ $loan->billing }}</td>
                         <td>{{ $loan->status }}</td>
                         <td>{{ $loan->created_at }}</td>
                         <td><a class="btn btn-primary" href="{{ route('loans.show', $loan) }}">Ver Cuotas</a></td>
@@ -106,5 +114,7 @@
             </table>
         </div>
     </div>
-    <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
+    @push('scripts')
+        <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
+    @endpush
 </x-layouts.app>

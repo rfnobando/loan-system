@@ -12,7 +12,10 @@ class Loan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'amount'
+        'customer_id',
+        'amount',
+        'billing',
+        'status'
     ];
 
     /**
@@ -34,4 +37,12 @@ class Loan extends Model
     {
         return $this->hasMany(Installment::class);
     }
+
+    public function updateStatus()
+    {
+        $areUnpaidInstallments = $this->installments()->where('status', 'Pendiente')->exists();
+        $status = $areUnpaidInstallments ? 'Pendiente' : 'Pagado';
+        $this->update(['status' => $status]);
+    }
+
 }

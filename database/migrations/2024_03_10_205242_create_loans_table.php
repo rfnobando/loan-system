@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 20, 2);
-            $table->string('status')->nullable();
+            $table->string('billing');
+            $table->string('status');
             $table->timestamps();
         });
     }

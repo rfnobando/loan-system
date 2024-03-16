@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Installment;
 use App\Http\Requests\StoreInstallmentRequest;
 use App\Http\Requests\UpdateInstallmentRequest;
+use Carbon\Carbon;
 
 class InstallmentController extends Controller
 {
@@ -21,7 +22,7 @@ class InstallmentController extends Controller
      */
     public function create()
     {
-        //
+        // return view('installments.create');
     }
 
     /**
@@ -53,7 +54,19 @@ class InstallmentController extends Controller
      */
     public function update(UpdateInstallmentRequest $request, Installment $installment)
     {
-        //
+        $newData = [];
+
+        if ($installment->status == 'Pendiente') {
+            $newData['status'] = 'Pagada';
+            $newData['paid_at'] = Carbon::now();
+        } else {
+            $newData['status'] = 'Pendiente';
+            $newData['paid_at'] = null;
+        }
+        
+        $installment->update($newData);
+
+        return to_route('loans.show', ['loan' => $installment->loan]);
     }
 
     /**

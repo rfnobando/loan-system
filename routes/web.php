@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\InstallmentController;
 use App\Http\Controllers\LoanController;
 
 /*
@@ -19,3 +20,4 @@ Route::view('/', 'dashboard')->name('dashboard');
 Route::get('/customers/search', [CustomerController::class, 'searchByDNI'])->name('customers.search');
 Route::resource('customers', CustomerController::class);
 Route::resource('loans', LoanController::class);
+Route::resource('installments', InstallmentController::class);

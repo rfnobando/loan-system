@@ -15,6 +15,11 @@ class Installment extends Model
         'paid_at' => 'datetime'
     ];
 
+    protected $fillable = [
+        'status',
+        'paid_at'
+    ];
+
     /**
      * Get the loan that owns the Installment
      *
@@ -23,5 +28,14 @@ class Installment extends Model
     public function loan(): BelongsTo
     {
         return $this->belongsTo(Loan::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($installment) {
+            $installment->loan->updateStatus();
+        });
     }
 }

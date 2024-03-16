@@ -1,4 +1,5 @@
-<x-layouts.app title="Prestamo #{{ $loan->id }}">
+<x-layouts.app title="Detalles del préstamo #{{ $loan->id }}">
+    <h4 class="mb-3">DNI: {{ $loan->customer->dni_number }}</h4>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -9,6 +10,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Monto</th>
+                        <th scope="col">Facturación</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Fecha de Solicitud</th>
                         <th scope="col">DNI Solicitante</th>
@@ -18,6 +20,7 @@
                 <tbody>
                     <tr>
                         <td>${{ $loan->amount }}</td>
+                        <td>{{ $loan->billing }}</td>
                         <td>{{ $loan->status }}</td>
                         <td>{{ $loan->created_at }}</td>
                         <td>{{ $loan->customer->dni_number }}</td>
@@ -25,10 +28,10 @@
                             <a href="{{ route('loans.edit', $loan) }}" class="btn btn-warning">
                                 <i class="fas fa-pencil"></i>
                             </a>
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger" id="deleteBtn">
                                 <i class="fas fa-trash"></i>
                             </button>
-                            <form id="deleteForm" action="" method="POST">
+                            <form id="deleteForm" action="{{ route('loans.destroy', $loan) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -38,6 +41,10 @@
             </table>
         </div>
     </div>
+    <form action="{{ route('installments.create') }}" method="GET">
+        <input type="hidden" name="loan_id" value="{{ $loan->id }}">
+        <button class="btn btn-primary m-4">Agregar cuota</button>
+    </form>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -54,6 +61,7 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Fecha de Emisión</th>
                         <th scope="col">Fecha de Vencimiento</th>
+                        <th scope="col">Fecha de Pago</th>
                         <th scope="col">Pagos</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -65,10 +73,15 @@
                         <td>{{ $installment->status }}</td>
                         <td>{{ $installment->created_at }}</td>
                         <td>{{ $installment->expiration_date }}</td>
+                        <td>{{ $installment->paid_at ?: 'Impaga' }}</td>
                         <td>
-                            <button class="btn {{ $installment->status == 'Pendiente' ? 'btn-success' : 'btn-secondary' ; }}">
-                                {{ $installment->status == 'Pendiente' ? 'Registrar pago' : 'Anular pago' ; }}
-                            </button>
+                            <form action="{{ route('installments.update', $installment) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn {{ $installment->status == 'Pendiente' ? 'btn-success' : 'btn-secondary' ; }}">
+                                    {{ $installment->status == 'Pendiente' ? 'Registrar pago' : 'Anular pago' }}
+                                </button>
+                            </form>
                         </td>
                         <td>
                             <a href="#" class="btn btn-warning">
@@ -77,7 +90,7 @@
                             <button class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </button>
-                            <form id="deleteForm" action="" method="POST">
+                            <form id="deleteInstallmentForm" action="" method="POST">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -88,4 +101,7 @@
             </table>
         </div>
     </div>
+    @push('scripts')
+        <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
+    @endpush
 </x-layouts.app>

@@ -20,6 +20,7 @@ class LoanFactory extends Factory
         return [
             'customer_id' => Customer::factory(),
             'amount' => $this->faker->numberBetween(3000000, 50000000) / 100,
+            'billing' => $this->faker->randomElement(['Semanal', 'Quincenal', 'Mensual']),
             'status' => 'Pendiente'
         ];
     }
