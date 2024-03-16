@@ -22,7 +22,7 @@ class InstallmentController extends Controller
      */
     public function create()
     {
-        // return view('installments.create');
+        return view('installments.create');
     }
 
     /**
@@ -30,7 +30,8 @@ class InstallmentController extends Controller
      */
     public function store(StoreInstallmentRequest $request)
     {
-        //
+        $installment = Installment::create($request->validated());
+        return view('loans.show', ['loan' => $installment->loan]);
     }
 
     /**

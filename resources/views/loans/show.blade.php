@@ -54,7 +54,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="6">Cantidad de cuotas: {{ count($loan->installments) }}</th>
+                        <th colspan="7">Cantidad de cuotas: {{ count($loan->installments) }}</th>
                     </tr>
                     <tr>
                         <th scope="col">Monto</th>
@@ -72,7 +72,7 @@
                         <td>${{ $installment->amount }}</td>
                         <td>{{ $installment->status }}</td>
                         <td>{{ $installment->created_at }}</td>
-                        <td>{{ $installment->expiration_date }}</td>
+                        <td>{{ $installment->expiration_date->format('d-m-Y') }}</td>
                         <td>{{ $installment->paid_at ?: 'Impaga' }}</td>
                         <td>
                             <form action="{{ route('installments.update', $installment) }}" method="post">

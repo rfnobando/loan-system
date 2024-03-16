@@ -11,7 +11,7 @@ class StoreInstallmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreInstallmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'loan_id' => ['required'],
+            'status' => ['required'],
+            'amount' => ['required'],
+            'expiration_date' => ['required']
         ];
     }
 }

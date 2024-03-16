@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
-use Illuminate\Http\Request;
+use App\Models\Installment;
 use App\Http\Requests\StoreLoanRequest;
 use App\Http\Requests\UpdateLoanRequest;
+use App\Services\InstallmentService;
+use Carbon\Carbon;
 
 class LoanController extends Controller
 {
@@ -20,7 +22,7 @@ class LoanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('loans.create');
     }
@@ -31,6 +33,15 @@ class LoanController extends Controller
     public function store(StoreLoanRequest $request)
     {
         $loan = Loan::create($request->validated());
+        $installmentService = new InstallmentService();
+
+        $installmentService->generateInstallments(
+            $request->input('installment_count'),
+            $request->input('installment_amount'),
+            $loan->id,
+            $loan->billing
+        );
+
         return to_route('loans.show', ['loan' => $loan]);
     }
 
