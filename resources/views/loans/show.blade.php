@@ -101,7 +101,7 @@
             </table>
         </div>
     </div>
-    @push('scripts')
+    @section('scripts')
         <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
-    @endpush
+    @endsection
 </x-layouts.app>
