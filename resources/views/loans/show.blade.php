@@ -22,7 +22,7 @@
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
                         <td>{{ $loan->status }}</td>
-                        <td>{{ $loan->created_at }}</td>
+                        <td>{{ $loan->created_at->format('d/m/Y') }}</td>
                         <td>{{ $loan->customer->dni_number }}</td>
                         <td>
                             <a href="{{ route('loans.edit', $loan) }}" class="btn btn-warning">
@@ -71,9 +71,9 @@
                     <tr>
                         <td>${{ $installment->amount }}</td>
                         <td>{{ $installment->status }}</td>
-                        <td>{{ $installment->created_at }}</td>
-                        <td>{{ $installment->expiration_date->format('d-m-Y') }}</td>
-                        <td>{{ $installment->paid_at ?: 'Impaga' }}</td>
+                        <td>{{ $installment->created_at->format('d/m/Y') }}</td>
+                        <td>{{ $installment->expiration_date->format('d/m/Y') }}</td>
+                        <td>{{ ($installment->paid_at != null) ? $installment->paid_at->format('d/m/Y') : 'Impaga' }}</td>
                         <td>
                             <form action="{{ route('installments.update', $installment) }}" method="post">
                                 @csrf
