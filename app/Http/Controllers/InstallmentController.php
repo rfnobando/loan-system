@@ -31,7 +31,7 @@ class InstallmentController extends Controller
     public function store(StoreInstallmentRequest $request)
     {
         $installment = Installment::create($request->validated());
-        return view('loans.show', ['loan' => $installment->loan]);
+        return to_route('loans.show', ['loan' => $installment->loan]);
     }
 
     /**

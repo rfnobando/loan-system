@@ -14,8 +14,8 @@
                     @enderror
                 </div>
                 <div class="form-floating mb-3">
-                    <input value="{{ now() }}" class="form-control" id="expiration_date" name="expiration_date" type="text" placeholder="" maxlength="10" required>
-                    <label for="expiration_date">Vencimiento: dd/mm/aaaa</label>
+                    <input class="form-control" id="expiration_date" name="expiration_date" type="date" placeholder="" maxlength="10" required>
+                    <label for="expiration_date">Fecha de Vencimiento</label>
                     @error('expiration_date')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

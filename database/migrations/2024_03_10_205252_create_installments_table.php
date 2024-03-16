@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('loan_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 20, 2);
             $table->string('status');
-            $table->timestamp('expiration_date');
+            $table->date('expiration_date');
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
         });

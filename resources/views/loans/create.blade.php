@@ -24,20 +24,6 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="installment_count" name="installment_count" type="number" placeholder="" required>
-                    <label for="installment_count">Cantidad de cuotas</label>
-                    @error('installment_count')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="form-floating mb-3">
-                    <input class="form-control" id="installment_amount" name="installment_amount" type="text" placeholder="" required>
-                    <label for="installment_amount">Monto de las cuotas</label>
-                    @error('installment_amount')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
                 <div class="mt-4 mb-0">
                     <div class="d-grid">
                         <button class="btn btn-primary btn-block" type="submit">Crear préstamo</button>
