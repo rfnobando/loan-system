@@ -101,6 +101,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($customer->loans->isEmpty())
+                        <tr>
+                            <td class="text-center" colspan="5">
+                                <h3 class="my-3">El cliente no tiene préstamos asignados.</h3>
+                            </td>
+                        </tr>
+                    @endif
                     @foreach($customer->loans as $loan)
                     <tr>
                         <td>${{ $loan->amount }}</td>

@@ -67,6 +67,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($loan->installments->isEmpty())
+                        <tr>
+                            <td class="text-center" colspan="7">
+                                <h3 class="my-3">El préstamo aún no tiene cuotas.</h3>
+                            </td>
+                        </tr>
+                    @endif
                     @foreach($loan->installments as $installment)
                     <tr>
                         <td>${{ $installment->amount }}</td>

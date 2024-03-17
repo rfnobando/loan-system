@@ -30,7 +30,7 @@ class LoanController extends Controller
     public function store(StoreLoanRequest $request)
     {
         $loan = Loan::create($request->validated());
-        return to_route('loans.show', ['loan' => $loan]);
+        return to_route('customers.show', ['customer' => $loan->customer]);
     }
 
     /**
