@@ -93,6 +93,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Facturación</th>
                         <th scope="col">Estado</th>
@@ -103,13 +104,14 @@
                 <tbody>
                     @if($customer->loans->isEmpty())
                         <tr>
-                            <td class="text-center" colspan="5">
+                            <td class="text-center" colspan="6">
                                 <h3 class="my-3">El cliente no tiene préstamos asignados.</h3>
                             </td>
                         </tr>
                     @endif
-                    @foreach($customer->loans as $loan)
+                    @foreach($customer->loans as $index => $loan)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
                         <td>{{ $loan->status }}</td>

@@ -27,7 +27,6 @@
                 <div class="collapse" id="collapseLoans" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="#">Ver todos</a>
-                        <a class="nav-link" href="#">Crear préstamo</a>
                     </nav>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<x-layouts.app title="Detalles del préstamo #{{ $loan->id }}">
+<x-layouts.app title="Detalles del préstamo">
     <h4 class="mb-3">DNI: {{ $loan->customer->dni_number }}</h4>
     <div class="card mb-4">
         <div class="card-header">
@@ -54,9 +54,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="7">Cantidad de cuotas: {{ count($loan->installments) }}</th>
+                        <th colspan="8">Cantidad de cuotas: {{ count($loan->installments) }}</th>
                     </tr>
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Fecha de Emisión</th>
@@ -69,13 +70,14 @@
                 <tbody>
                     @if($loan->installments->isEmpty())
                         <tr>
-                            <td class="text-center" colspan="7">
+                            <td class="text-center" colspan="8">
                                 <h3 class="my-3">El préstamo aún no tiene cuotas.</h3>
                             </td>
                         </tr>
                     @endif
-                    @foreach($loan->installments as $installment)
+                    @foreach($loan->installments as $index => $installment)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>${{ $installment->amount }}</td>
                         <td>{{ $installment->status }}</td>
                         <td>{{ $installment->created_at->format('d/m/Y') }}</td>

@@ -8,7 +8,7 @@
                 <input id="status" name="status" type="hidden" value="Pendiente" required>
                 <div class="form-floating mb-3">
                     <input class="form-control" id="amount" name="amount" pattern="^\d{1,8}(\.\d{1,2})?$" type="text" placeholder="" required>
-                    <label for="amount">Monto del préstamo</label>
+                    <label for="amount">Monto</label>
                     @error('amount')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
