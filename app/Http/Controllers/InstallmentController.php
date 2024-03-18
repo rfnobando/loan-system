@@ -47,7 +47,7 @@ class InstallmentController extends Controller
      */
     public function edit(Installment $installment)
     {
-        //
+        return view('installments.edit', ['installment' => $installment]);
     }
 
     /**

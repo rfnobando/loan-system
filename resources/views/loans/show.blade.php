@@ -93,7 +93,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-warning">
+                            <a href="{{ route('installments.edit', $installment) }}" class="btn btn-warning">
                                 <i class="fas fa-pencil"></i>
                             </a>
                             <button class="btn btn-danger">

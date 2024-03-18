@@ -35,7 +35,7 @@ class Loan extends Model
      */
     public function installments(): HasMany
     {
-        return $this->hasMany(Installment::class);
+        return $this->hasMany(Installment::class)->orderBy('expiration_date');
     }
 
     public function updateStatus()

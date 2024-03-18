@@ -104,14 +104,13 @@
                 <tbody>
                     @if($customer->loans->isEmpty())
                         <tr>
-                            <td class="text-center" colspan="6">
+                            <td class="text-center" colspan="5">
                                 <h3 class="my-3">El cliente no tiene préstamos asignados.</h3>
                             </td>
                         </tr>
                     @endif
                     @foreach($customer->loans as $index => $loan)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
                         <td>{{ $loan->status }}</td>
