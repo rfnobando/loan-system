@@ -95,16 +95,18 @@
                             </form>
                         </td>
                         <td>
-                            <a href="{{ route('installments.edit', $installment) }}" class="btn btn-warning">
-                                <i class="fas fa-pencil"></i>
-                            </a>
-                            <button class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <form id="deleteInstallmentForm" action="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <div class="btn-group">
+                                <a href="{{ route('installments.edit', $installment) }}" class="btn btn-warning rounded mx-1">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                <form class="mx-1" action="{{ route('installments.destroy', $installment) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger rounded delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

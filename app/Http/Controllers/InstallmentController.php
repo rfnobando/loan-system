@@ -64,7 +64,8 @@ class InstallmentController extends Controller
      */
     public function destroy(Installment $installment)
     {
-        //
+        $installment->delete();
+        return back();
     }
     
     public function updateStatus(Installment $installment)
@@ -80,8 +81,7 @@ class InstallmentController extends Controller
         }
         
         $installment->update($newData);
-    
-        return to_route('loans.show', ['loan' => $installment->loan]);
+        return back();
     }
 
 }
