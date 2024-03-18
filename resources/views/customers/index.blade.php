@@ -16,6 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($customers->isEmpty())
+                        <tr>
+                            <td class="text-center" colspan="5">
+                                <h3 class="my-3">No hay clientes registrados.</h3>
+                            </td>
+                        </tr>
+                    @endif
                     @foreach($customers as $customer)
                         <tr>
                             <td>{{ $customer->full_name }}</td>

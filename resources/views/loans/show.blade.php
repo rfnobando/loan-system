@@ -25,16 +25,18 @@
                         <td>{{ $loan->created_at->format('d/m/Y') }}</td>
                         <td>{{ $loan->customer->dni_number }}</td>
                         <td>
-                            <a href="{{ route('loans.edit', $loan) }}" class="btn btn-warning">
-                                <i class="fas fa-pencil"></i>
-                            </a>
-                            <button class="btn btn-danger" id="deleteBtn">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            <form id="deleteForm" action="{{ route('loans.destroy', $loan) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                            </form>
+                            <div class="btn-group">
+                                <a href="{{ route('loans.edit', $loan) }}" class="btn btn-warning rounded mx-1">
+                                    <i class="fas fa-pencil"></i>
+                                </a>
+                                <form class="mx-1" id="deleteForm" action="{{ route('loans.destroy', $loan) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger rounded delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -111,6 +113,6 @@
         </div>
     </div>
     @section('scripts')
-        <script src="{{ asset('js/submitDeleteForm.js') }}"></script>
+        <script src="{{ asset('js/confirmDelete.js') }}"></script>
     @endsection
 </x-layouts.app>
