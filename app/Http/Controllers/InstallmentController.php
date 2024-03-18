@@ -55,8 +55,22 @@ class InstallmentController extends Controller
      */
     public function update(UpdateInstallmentRequest $request, Installment $installment)
     {
+        $installment->update($request->validated());
+        return to_route('loans.show', ['loan' => $installment->loan]);
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Installment $installment)
+    {
+        //
+    }
+    
+    public function updateStatus(Installment $installment)
+    {
         $newData = [];
-
+    
         if ($installment->status == 'Pendiente') {
             $newData['status'] = 'Pagada';
             $newData['paid_at'] = Carbon::now();
@@ -66,15 +80,8 @@ class InstallmentController extends Controller
         }
         
         $installment->update($newData);
-
+    
         return to_route('loans.show', ['loan' => $installment->loan]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Installment $installment)
-    {
-        //
-    }
 }

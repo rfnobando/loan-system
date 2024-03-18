@@ -93,7 +93,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Facturación</th>
                         <th scope="col">Estado</th>

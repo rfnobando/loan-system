@@ -84,7 +84,7 @@
                         <td>{{ $installment->expiration_date->format('d/m/Y') }}</td>
                         <td>{{ ($installment->paid_at != null) ? $installment->paid_at->format('d/m/Y') : 'Impaga' }}</td>
                         <td>
-                            <form action="{{ route('installments.update', $installment) }}" method="post">
+                            <form action="{{ route('installments.update-status', $installment) }}" method="post">
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" class="btn {{ $installment->status == 'Pendiente' ? 'btn-success' : 'btn-secondary' ; }}">

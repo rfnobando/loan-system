@@ -22,7 +22,8 @@ class UpdateInstallmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'amount' => ['required'],
+            'expiration_date' => ['required']
         ];
     }
 }
