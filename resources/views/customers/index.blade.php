@@ -1,5 +1,14 @@
 <x-layouts.app title="Clientes">
-    <div class="card mb-4">
+    <form action="{{ route('customers.index') }}" method="GET">
+        <div class="input-group" style="width: 18rem;">
+            <select class="form-select" name="sort">
+                <option value="desc" {{ $sort == 'desc' ? 'selected' : null }}>Más recientes</option>
+                <option value="asc" {{ $sort == 'asc' ? 'selected' : null }} >Más antiguos</option>
+            </select>
+            <button class="btn btn-primary" type="submit">Aplicar</button>
+        </div>
+    </form>
+    <div class="card mt-2 mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Lista
@@ -35,8 +44,11 @@
                 </tbody>
             </table>
             <div class="px-3">
-                {{ $customers->links() }}
+                {{ $customers->appends(['sort' => $sort])->links() }}
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </x-layouts.app>
