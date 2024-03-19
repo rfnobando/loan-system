@@ -30,5 +30,7 @@
             </form>
         </div>
     </div>
-    <script src="{{ asset('js/formatAmount.js') }}"></script>
+    @section('scripts')
+        <script src="{{ asset('js/formatAmount.js') }}"></script>
+    @endsection
 </x-layouts.app>
