@@ -16,11 +16,16 @@ use App\Http\Controllers\LoanController;
 |
 */
 
+// Dashboard
 Route::view('/', 'dashboard')->name('dashboard');
+
+// Customers
 Route::get('/customers/search', [CustomerController::class, 'searchByDNI'])->name('customers.search');
 Route::resource('customers', CustomerController::class);
 
-Route::resource('loans', LoanController::class);
+// Loans
+Route::resource('loans', LoanController::class)->except(['index']);
 
+// Installments
 Route::patch('/installments/{installment}/update-status', [InstallmentController::class, 'updateStatus'])->name('installments.update-status');
-Route::resource('installments', InstallmentController::class);
+Route::resource('installments', InstallmentController::class)->except(['index', 'show']);

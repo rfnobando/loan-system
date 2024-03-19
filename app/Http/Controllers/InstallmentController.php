@@ -10,14 +10,6 @@ use Carbon\Carbon;
 class InstallmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -32,14 +24,6 @@ class InstallmentController extends Controller
     {
         $installment = Installment::create($request->validated());
         return to_route('loans.show', ['loan' => $installment->loan]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Installment $installment)
-    {
-        //
     }
 
     /**
