@@ -33,7 +33,7 @@
                                 <a href="{{ route('customers.edit', $customer) }}" class="btn btn-warning rounded mx-1">
                                     <i class="fas fa-pencil"></i>
                                 </a>
-                                <form class="mx-1" id="deleteForm" action="{{ route('customers.destroy', $customer) }}" method="POST">
+                                <form class="mx-1" action="{{ route('customers.destroy', $customer) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger rounded delete-btn">
