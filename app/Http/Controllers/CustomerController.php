@@ -16,9 +16,15 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $customers = null;
-        $sort = $request->get('sort', 'desc');
+        $sort = $request->get('sort', 'newest');
 
-        $customers = Customer::orderBy('id', $sort)->paginate(10);
+        if ($sort == 'newest' || ($sort != 'newest' && $sort != 'oldest')) {
+            $customers = Customer::orderBy('id', 'desc')->paginate(10);
+        }
+
+        if ($sort == 'oldest') {
+            $customers = Customer::orderBy('id', 'asc')->paginate(10);
+        }
 
         return view('customers.index', ['customers' => $customers, 'sort' => $sort]);
     }

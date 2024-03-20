@@ -2,8 +2,8 @@
     <form action="{{ route('customers.index') }}" method="GET">
         <div class="input-group" style="width: 18rem;">
             <select class="form-select" name="sort">
-                <option value="desc" {{ $sort == 'desc' ? 'selected' : null }}>Más recientes</option>
-                <option value="asc" {{ $sort == 'asc' ? 'selected' : null }} >Más antiguos</option>
+                <option value="newest" {{ $sort == 'newest' ? 'selected' : null }}>Más recientes</option>
+                <option value="oldest" {{ $sort == 'oldest' ? 'selected' : null }} >Más antiguos</option>
             </select>
             <button class="btn btn-primary" type="submit">Aplicar</button>
         </div>
