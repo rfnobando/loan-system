@@ -20,8 +20,7 @@ class InstallmentFactory extends Factory
         return [
             'loan_id' => Loan::factory(),
             'amount' => $this->faker->numberBetween(300000, 5000000) / 100,
-            'status' => 'Pendiente',
-            'expiration_date' => $this->faker->dateTimeBetween('+1 week', '+5 weeks'),
+            'expiration_date' => $this->faker->dateTimeBetween('-5 week', '+5 weeks'),
             'paid_at' => null
         ];
     }
