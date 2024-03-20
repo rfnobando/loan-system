@@ -23,7 +23,7 @@ class StoreInstallmentRequest extends FormRequest
     {
         return [
             'loan_id' => ['required', 'integer', 'exists:loans,id'],
-            'amount' => ['required', 'numeric', 'digits_between:1,21'],
+            'amount' => ['required', 'numeric', 'min:1', 'max:999999999'],
             'expiration_date' => ['required', 'date']
         ];
     }

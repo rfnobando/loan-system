@@ -24,7 +24,7 @@ class StoreLoanRequest extends FormRequest
     {
         return [
             'customer_id' => ['required', 'integer', 'exists:customers,id'],
-            'amount' => ['required', 'numeric', 'digits_between:1,21'],
+            'amount' => ['required', 'numeric', 'min:1', 'max:999999999'],
             'billing' => ['required', Rule::in(['Semanal', 'Quincenal', 'Mensual'])]
         ];
     }
