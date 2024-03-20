@@ -22,7 +22,7 @@ class LoanController extends Controller
     public function store(StoreLoanRequest $request)
     {
         $loan = Loan::create($request->validated());
-        return to_route('customers.show', ['customer' => $loan->customer]);
+        return to_route('customers.show', ['customer' => $loan->customer])->with('success', 'El préstamo ha sido asignado con éxito.');
     }
 
     /**
@@ -47,7 +47,7 @@ class LoanController extends Controller
     public function update(UpdateLoanRequest $request, Loan $loan)
     {
         $loan->update($request->validated());
-        return to_route('loans.show', ['loan' => $loan]);
+        return to_route('loans.show', ['loan' => $loan])->with('success', 'Los datos se han actualizado con éxito.');
     }
 
     /**
@@ -58,6 +58,6 @@ class LoanController extends Controller
         $customer = $loan->customer;
         $loan->delete();
 
-        return to_route('customers.show', ['customer' => $customer]);
+        return to_route('customers.show', ['customer' => $customer])->with('success', 'El registro se ha eliminado con éxito.');
     }
 }

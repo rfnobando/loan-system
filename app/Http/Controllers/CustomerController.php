@@ -47,7 +47,7 @@ class CustomerController extends Controller
         $customer['dni_backpic'] = $request->file('dni_backpic')->store('uploads', 'public');
 
         Customer::create($customer);
-        return to_route('customers.index');
+        return to_route('customers.index')->with('success', 'El cliente ha sido registrado con éxito');
     }
 
     /**
@@ -84,7 +84,7 @@ class CustomerController extends Controller
         }
 
         $customer->update($data);
-        return to_route('customers.show', ['customer' => $customer]);
+        return to_route('customers.show', ['customer' => $customer])->with('success', 'Los datos se han actualizado con éxito.');
     }
 
     /**
@@ -96,7 +96,7 @@ class CustomerController extends Controller
         Storage::delete('public/'.$customer->dni_backpic);
         $customer->delete();
 
-        return to_route('customers.index');
+        return to_route('customers.index')->with('success', 'El registro se ha eliminado con éxito.');
     }
 
     public function searchByDNI(Request $request)
@@ -107,7 +107,7 @@ class CustomerController extends Controller
         if ($customer) {
             return to_route('customers.show', ['customer' => $customer]);
         } else {
-            return back()->with('warning', 'El usuario buscado no existe.');
+            return back()->with('warning', 'El cliente buscado no existe.');
         }
     }
 
