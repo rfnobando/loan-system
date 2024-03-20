@@ -21,7 +21,13 @@
                     <tr>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
-                        <td>{{ $loan->status }}</td>
+                        <td>
+                            @if($loan->status == 'Pendiente')
+                                <strong>Pendiente</strong>
+                            @else
+                                <strong class="text-success">Pagado</strong>
+                            @endif
+                        </td>
                         <td>{{ $loan->created_at->format('d/m/Y') }}</td>
                         <td>{{ $loan->customer->dni_number }}</td>
                         <td>
@@ -77,10 +83,26 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>${{ $installment->amount }}</td>
-                        <td>{{ $installment->status }}</td>
+                        <td>
+                            @if($installment->status == 'Pendiente')
+                                @if($installment->expiration_date->lessThan(now()))
+                                    <strong class="text-danger">Vencida</strong>
+                                @else
+                                    <strong>Pendiente</strong>
+                                @endif
+                            @else
+                                <strong class="text-success">Pagada</strong>
+                            @endif
+                        </td>
                         <td>{{ $installment->created_at->format('d/m/Y') }}</td>
                         <td>{{ $installment->expiration_date->format('d/m/Y') }}</td>
-                        <td>{{ ($installment->paid_at != null) ? $installment->paid_at->format('d/m/Y') : 'Impaga' }}</td>
+                        <td>
+                            @if($installment->paid_at != null)
+                                {{ $installment->paid_at->format('d/m/Y') }}
+                            @else
+                                <strong>Impaga</strong>
+                            @endif
+                        </td>
                         <td>
                             <form action="{{ route('installments.update-status', $installment) }}" method="post">
                                 @csrf
