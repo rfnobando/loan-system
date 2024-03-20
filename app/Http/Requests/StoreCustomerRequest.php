@@ -22,12 +22,12 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => ['required'],
-            'phone_number' => ['required'],
-            'email' => ['required', 'email'],
-            'dni_number' => ['required', 'integer', 'unique:customers'],
-            'dni_frontpic' => ['required'],
-            'dni_backpic' => ['required']
+            'full_name' => ['required', 'min:1', 'max:75'],
+            'phone_number' => ['required', 'min:4', 'max:30'],
+            'email' => ['required', 'email', 'min:4', 'max:150'],
+            'dni_number' => ['required', 'integer', 'min:100000', 'max:999999999', 'unique:customers'],
+            'dni_frontpic' => ['required', 'image'],
+            'dni_backpic' => ['required', 'image']
         ];
     }
 }
