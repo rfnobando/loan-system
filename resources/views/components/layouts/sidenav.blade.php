@@ -21,8 +21,6 @@
                 </div>
             </div>
         </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-        </div>
+        <div class="sb-sidenav-footer"></div>
     </nav>
 </div>

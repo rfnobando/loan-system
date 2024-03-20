@@ -1,6 +1,7 @@
 <x-layouts.app title="Detalles del préstamo">
-    <h4 class="mb-3">DNI: {{ $loan->customer->dni_number }}</h4>
-    <div class="card mb-4">
+    <h4 class="mb-2">DNI: {{ $loan->customer->dni_number }}</h4>
+    <a href="{{ route('customers.show', $loan->customer) }}">Ver cliente</a>
+    <div class="card my-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Datos del préstamo
@@ -22,11 +23,9 @@
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
                         <td>
-                            @if($loan->status == 'Pendiente')
-                                <strong>Pendiente</strong>
-                            @else
-                                <strong class="text-success">Pagado</strong>
-                            @endif
+                            <strong class="{{ ($loan->status == 'Pagado') ? 'text-success' : null }}">
+                                {{ $loan->status }}
+                            </strong>
                         </td>
                         <td>{{ $loan->created_at->format('d/m/Y') }}</td>
                         <td>{{ $loan->customer->dni_number }}</td>

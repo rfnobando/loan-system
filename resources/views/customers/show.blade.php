@@ -109,7 +109,11 @@
                     <tr>
                         <td>${{ $loan->amount }}</td>
                         <td>{{ $loan->billing }}</td>
-                        <td>{{ $loan->status }}</td>
+                        <td>
+                            <strong class="{{ ($loan->status == 'Pagado') ? 'text-success' : null }}">
+                                {{ $loan->status }}
+                            </strong>
+                        </td>
                         <td>{{ $loan->created_at->format('d/m/Y') }}</td>
                         <td><a class="btn btn-primary" href="{{ route('loans.show', $loan) }}">Ver Cuotas</a></td>
                     </tr>
