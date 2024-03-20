@@ -1,13 +1,31 @@
 <x-layouts.app title="Asignar préstamo">
     <h4>DNI: {{ request()->query('customer_dni_number') }}</h4>
+    @error('customer_id')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
     <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-body">
             <form action="{{ route('loans.store') }}" method="POST">
                 @csrf
-                <input id="customer_id" name="customer_id" type="hidden" value="{{ request()->query('customer_id') }}" required>
-                <input id="status" name="status" type="hidden" value="Pendiente" required>
+                <input
+                    id="customer_id"
+                    name="customer_id"
+                    type="hidden"
+                    value="{{ request()->query('customer_id') }}"
+                    required
+                >
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="amount" name="amount" pattern="^\d{1,8}(\.\d{1,2})?$" type="text" placeholder="" required>
+                    <input
+                        class="form-control"
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        value="{{ old('amount') }}"
+                        pattern="^\d{1,18}(\.\d{1,2})?$"
+                        placeholder=""
+                        maxlength="21"
+                        required
+                    >
                     <label for="amount">Monto</label>
                     @error('amount')
                         <small class="text-danger">{{ $message }}</small>

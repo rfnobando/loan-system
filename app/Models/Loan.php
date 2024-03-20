@@ -38,11 +38,20 @@ class Loan extends Model
         return $this->hasMany(Installment::class)->orderBy('expiration_date');
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($loan) {
+            $loan->status = 'Pendiente';
+        });
+    }
+    
     public function updateStatus()
     {
         $areUnpaidInstallments = $this->installments()->where('status', 'Pendiente')->exists();
         $status = $areUnpaidInstallments ? 'Pendiente' : 'Pagado';
         $this->update(['status' => $status]);
     }
-
+    
 }

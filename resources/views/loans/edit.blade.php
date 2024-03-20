@@ -1,11 +1,22 @@
 <x-layouts.app title="Editar préstamo">
+    <h4>DNI: {{ $loan->customer->dni_number }}</h4>
     <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-body">
             <form action="{{ route('loans.update', $loan) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="form-floating mb-3">
-                    <input class="form-control" id="amount" name="amount" type="text" placeholder="" pattern="^\d{1,8}(\.\d{1,2})?$" value="{{ old('amount', $loan->amount) }}" required>
+                    <input
+                        class="form-control"
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        value="{{ old('amount', $loan->amount) }}"
+                        pattern="^\d{1,18}(\.\d{1,2})?$" 
+                        placeholder=""
+                        maxlength="21"
+                        required
+                    >
                     <label for="amount">Monto</label>
                     @error('amount')
                         <small class="text-danger">{{ $message }}</small>

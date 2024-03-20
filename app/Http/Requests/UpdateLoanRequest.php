@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateLoanRequest extends FormRequest
 {
@@ -22,8 +23,8 @@ class UpdateLoanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => ['required'],
-            'billing' => ['required']
+            'amount' => ['required', 'numeric', 'digits_between:1,21'],
+            'billing' => ['required', Rule::in(['Semanal', 'Quincenal', 'Mensual'])]
         ];
     }
 }
