@@ -81,11 +81,6 @@
             </div>
         </div>
     </div>
-    <form action="{{ route('loans.create') }}" method="GET">
-        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
-        <input type="hidden" name="customer_dni_number" value="{{ $customer->dni_number }}">
-        <button class="btn btn-primary m-4">Asignar préstamo</button>
-    </form>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -123,6 +118,11 @@
             </table>
         </div>
     </div>
+    <form class="text-center my-3" action="{{ route('loans.create') }}" method="GET">
+        <input type="hidden" name="customer_id" value="{{ $customer->id }}">
+        <input type="hidden" name="customer_dni_number" value="{{ $customer->dni_number }}">
+        <button class="btn btn-primary w-50">Asignar préstamo</button>
+    </form>
     @section('scripts')
         <script src="{{ asset('js/confirmDelete.js') }}"></script>
     @endsection

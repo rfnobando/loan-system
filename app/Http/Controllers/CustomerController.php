@@ -107,7 +107,7 @@ class CustomerController extends Controller
         if ($customer) {
             return to_route('customers.show', ['customer' => $customer]);
         } else {
-            return back()->with('status', 'El usuario buscado no existe.');
+            return back()->with('warning', 'El usuario buscado no existe.');
         }
     }
 

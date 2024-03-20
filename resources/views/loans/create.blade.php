@@ -43,8 +43,8 @@
                     @enderror
                 </div>
                 <div class="mt-4 mb-0">
-                    <div class="d-grid">
-                        <button class="btn btn-primary btn-block" type="submit">Crear préstamo</button>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-block w-50" type="submit">Crear préstamo</button>
                     </div>
                 </div>
             </form>

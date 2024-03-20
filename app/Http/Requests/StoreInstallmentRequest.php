@@ -22,10 +22,9 @@ class StoreInstallmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'loan_id' => ['required'],
-            'status' => ['required'],
-            'amount' => ['required'],
-            'expiration_date' => ['required']
+            'loan_id' => ['required', 'integer', 'exists:loans,id'],
+            'amount' => ['required', 'numeric', 'digits_between:1,21'],
+            'expiration_date' => ['required', 'date']
         ];
     }
 }

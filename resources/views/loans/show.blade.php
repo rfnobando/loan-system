@@ -43,10 +43,6 @@
             </table>
         </div>
     </div>
-    <form action="{{ route('installments.create') }}" method="GET">
-        <input type="hidden" name="loan_id" value="{{ $loan->id }}">
-        <button class="btn btn-primary m-4">Agregar cuota</button>
-    </form>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -114,6 +110,10 @@
             </table>
         </div>
     </div>
+    <form class="text-center my-3" action="{{ route('installments.create') }}" method="GET">
+        <input type="hidden" name="loan_id" value="{{ $loan->id }}">
+        <button class="btn btn-primary w-50">Agregar cuota</button>
+    </form>
     @section('scripts')
         <script src="{{ asset('js/confirmDelete.js') }}"></script>
     @endsection

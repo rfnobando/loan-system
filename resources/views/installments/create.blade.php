@@ -1,20 +1,46 @@
 <x-layouts.app title="Crear nueva cuota">
-    <h4>Préstamo #{{ request()->query('loan_id') }}</h4>
+    @error('loan_id')
+        <div class="alert alert-warning">{{ $message }}</div>
+    @enderror
     <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-body">
             <form action="{{ route('installments.store') }}" method="POST">
                 @csrf
-                <input id="loan_id" name="loan_id" type="hidden" value="{{ request()->query('loan_id') }}" required>
-                <input id="status" name="status" type="hidden" value="Pendiente" required>
+                <input
+                    id="loan_id"
+                    name="loan_id"
+                    type="hidden"
+                    value="{{ request()->query('loan_id') }}"
+                    required
+                >
                 <div class="form-floating mb-3">
-                    <input class="form-control" value="{{ old('amount') }}" id="amount" name="amount" type="text" pattern="^\d{1,8}(\.\d{1,2})?$" placeholder="" required>
+                    <input
+                        class="form-control"
+                        id="amount"
+                        name="amount"
+                        type="text"
+                        value="{{ old('amount') }}"
+                        pattern="^\d{1,18}(\.\d{1,2})?$"
+                        placeholder=""
+                        maxlength="21"
+                        required
+                    >
                     <label for="amount">Monto</label>
                     @error('amount')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-floating mb-3">
-                    <input class="form-control" value="{{ old('expiration_date') }}" id="expiration_date" name="expiration_date" type="date" placeholder="" maxlength="10" required>
+                    <input
+                        class="form-control"
+                        id="expiration_date"
+                        name="expiration_date"
+                        type="date"
+                        value="{{ old('expiration_date') }}"
+                        placeholder=""
+                        maxlength="10"
+                        required
+                    >
                     <label for="expiration_date">Fecha de Vencimiento</label>
                     @error('expiration_date')
                         <small class="text-danger">{{ $message }}</small>

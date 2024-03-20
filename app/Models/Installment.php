@@ -37,6 +37,10 @@ class Installment extends Model
     {
         parent::boot();
 
+        static::creating(function ($installment) {
+            $installment->status = 'Pendiente';
+        });
+
         static::updated(function ($installment) {
             $installment->loan->updateStatus();
         });
