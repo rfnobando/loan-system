@@ -21,6 +21,5 @@
                 </div>
             </div>
         </div>
-        <div class="sb-sidenav-footer"></div>
     </nav>
 </div>
