@@ -43,12 +43,8 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         $customer = $request->validated();
-
-        $dniFrontName = $customer['dni_number'] . '_front.' . $customer['dni_frontpic']->getClientOriginalExtension();
-        $dniBackName = $customer['dni_number'] . '_back.' . $customer['dni_backpic']->getClientOriginalExtension();
-
-        $customer['dni_frontpic'] = $customer['dni_frontpic']->storeAs('uploads', $dniFrontName, 'public');
-        $customer['dni_backpic'] = $customer['dni_backpic']->storeAs('uploads', $dniBackName, 'public');
+        $customer['dni_frontpic'] = $request->file('dni_frontpic')->store('uploads', 'public');
+        $customer['dni_backpic'] = $request->file('dni_backpic')->store('uploads', 'public');
 
         Customer::create($customer);
         return to_route('customers.index')->with('success', 'El cliente ha sido registrado con éxito');
@@ -79,14 +75,12 @@ class CustomerController extends Controller
 
         if($request->hasFile('dni_frontpic')) {
             Storage::delete('public/'.$customer->dni_frontpic);
-            $dniFrontName = $data['dni_number'] . '_front.' . $data['dni_frontpic']->getClientOriginalExtension();
-            $data['dni_frontpic'] = $data['dni_frontpic']->storeAs('uploads', $dniFrontName, 'public');
+            $data['dni_frontpic'] = $request->file('dni_frontpic')->store('uploads', 'public');
         }
 
         if($request->hasFile('dni_backpic')) {
             Storage::delete('public/'.$customer->dni_backpic);
-            $dniBackName = $data['dni_number'] . '_back.' . $data['dni_backpic']->getClientOriginalExtension();
-            $data['dni_backpic'] = $data['dni_backpic']->storeAs('uploads', $dniBackName, 'public');
+            $data['dni_backpic'] = $request->file('dni_backpic')->store('uploads', 'public');
         }
 
         $customer->update($data);
