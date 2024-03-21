@@ -50,7 +50,8 @@ class Loan extends Model
     public function updateStatus()
     {
         $areUnpaidInstallments = $this->installments()->where('status', 'Pendiente')->exists();
-        $status = $areUnpaidInstallments ? 'Pendiente' : 'Pagado';
+        $areNotInstallments = $this->installments()->count() <= 0;
+        $status = $areUnpaidInstallments || $areNotInstallments ? 'Pendiente' : 'Pagado';
         $this->update(['status' => $status]);
     }
     

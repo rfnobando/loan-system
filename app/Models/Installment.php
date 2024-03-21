@@ -44,5 +44,13 @@ class Installment extends Model
         static::updated(function ($installment) {
             $installment->loan->updateStatus();
         });
+
+        static::created(function ($installment) {
+            $installment->loan->updateStatus();
+        });
+
+        static::deleted(function ($installment) {
+            $installment->loan->updateStatus();
+        });
     }
 }
