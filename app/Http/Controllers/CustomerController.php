@@ -101,6 +101,8 @@ class CustomerController extends Controller
 
     public function searchByDNI(Request $request)
     {
+        $request->validate(['dni' => ['required', 'integer']]);
+
         $dni = $request->query('dni');
         $customer = Customer::where('dni_number', $dni)->first();
 
